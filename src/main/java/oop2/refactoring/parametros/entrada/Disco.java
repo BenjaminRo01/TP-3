@@ -2,7 +2,9 @@ package oop2.refactoring.parametros.entrada;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 class Disco {
     private String pathBase;
@@ -12,11 +14,11 @@ class Disco {
     // no me entero hasta no invocar guardar...
     // aseguremos objetos completos al instanciarlos
     public Disco(String pathBase) {
-//        Objects.requireNonNull(pathBase);
-//        Path path = Paths.get(pathBase);
-//        if (Files.notExists(path)) {
-//            throw new IllegalArgumentException("No existe el path...");
-//        }
+        Objects.requireNonNull(pathBase);
+        Path path = Paths.get(pathBase);
+        if (Files.notExists(path)) {
+            throw new IllegalArgumentException("No existe el path...");
+        }
         this.pathBase = pathBase;
     }
 
