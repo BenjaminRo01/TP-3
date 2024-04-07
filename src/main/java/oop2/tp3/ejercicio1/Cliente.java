@@ -15,10 +15,10 @@ public class Cliente {
         Object[] resultado = new Object[2];
         double total = 0;
         int puntosAlquilerFrecuente = 0;
-        CalculadoraAquiler calculadoraAquiler = new CalculadoraAquiler();
         for (Alquiler alquiler : alquileres) {
-            total += calculadoraAquiler.calcularMonto(alquiler);
-            puntosAlquilerFrecuente += calculadoraAquiler.calcularPuntos(alquiler);
+            CalculadoraAquiler calculadoraAquiler = new CalculadoraAquiler(alquiler, alquiler.copia().libro().codigoPrecio());
+            total += calculadoraAquiler.calcularMonto();
+            puntosAlquilerFrecuente += calculadoraAquiler.calcularPuntos();
         }
         resultado[0] = total;
         resultado[1] = puntosAlquilerFrecuente;

@@ -1,8 +1,15 @@
 package oop2.tp3.ejercicio1;
 
 public class CalculadoraAquiler {
+    private Alquiler alquiler;
+    private int tipoLibro;
 
-    public double calcularMonto(Alquiler alquiler) {
+    public CalculadoraAquiler(Alquiler alquiler, int tipoLibro) {
+        this.alquiler = alquiler;
+        this.tipoLibro = tipoLibro;
+    }
+
+    public double calcularMonto() {
         double monto = 0;
         switch (alquiler.copia().libro().codigoPrecio()) {
             case Libro.REGULARES:
@@ -22,7 +29,7 @@ public class CalculadoraAquiler {
         return monto;
     }
 
-    public int calcularPuntos(Alquiler alquiler) {
+    public int calcularPuntos() {
         int puntos = 0;
         if ((alquiler.copia().libro().codigoPrecio() == Libro.NUEVO_LANZAMIENTO)
                 && alquiler.diasAlquilados() > 1) {
