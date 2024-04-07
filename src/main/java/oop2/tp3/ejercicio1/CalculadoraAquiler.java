@@ -3,11 +3,9 @@ package oop2.tp3.ejercicio1;
 public abstract class CalculadoraAquiler {
     protected static final int CONSTANTE_PUNTOS = 1;
     protected Alquiler alquiler;
-    protected int tipoLibro;
 
-    public CalculadoraAquiler(Alquiler alquiler, int tipoLibro) {
+    public CalculadoraAquiler(Alquiler alquiler) {
         this.alquiler = alquiler;
-        this.tipoLibro = tipoLibro;
     }
 
     public abstract double calcularMonto();

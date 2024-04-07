@@ -5,11 +5,11 @@ public class FactoryCalculadoraAlquiler {
         int tipoLibro = alquiler.codigoPrecioLibro();
         switch (tipoLibro) {
             case Libro.REGULARES:
-                return new CalculadoraAlquilerRegular(alquiler, tipoLibro);
+                return new CalculadoraAlquilerRegular(alquiler);
             case Libro.NUEVO_LANZAMIENTO:
-                return new CalculadoraAlquilerNuevoLanzamiento(alquiler, tipoLibro);
+                return new CalculadoraAlquilerNuevoLanzamiento(alquiler);
             case Libro.INFANTILES:
-                return new CalculadoraAlquilerInfantil(alquiler, tipoLibro);
+                return new CalculadoraAlquilerInfantil(alquiler);
             default:
                 throw new RuntimeException("Tipo de libro desconocido.");
         }

@@ -5,8 +5,8 @@ public class CalculadoraAlquilerRegular extends CalculadoraAquiler {
     private static final int CONSTANTE_MONTO = 2;
     private static final double COEFICIENTE_COSTO_POR_DIA = 1.5;
 
-    public CalculadoraAlquilerRegular(Alquiler alquiler, int tipoLibro) {
-        super(alquiler, tipoLibro);
+    public CalculadoraAlquilerRegular(Alquiler alquiler) {
+        super(alquiler);
     }
 
     @Override
