@@ -13,7 +13,7 @@ public class Libro {
     }
 
     public int codigoPrecio() {
-        return codigoPrecio;
+        return this.codigoPrecio;
     }
 
     public String nombre() {

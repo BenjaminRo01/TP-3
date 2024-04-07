@@ -1,7 +1,7 @@
 package oop2.tp3.ejercicio1;
 
 public abstract class CalculadoraAquiler {
-    public static final int CONSTANTE_PUNTOS = 1;
+    protected static final int CONSTANTE_PUNTOS = 1;
     protected Alquiler alquiler;
     protected int tipoLibro;
 

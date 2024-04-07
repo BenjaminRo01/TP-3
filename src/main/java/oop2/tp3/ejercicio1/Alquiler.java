@@ -16,4 +16,8 @@ public class Alquiler {
     public CopiaLibro copia() {
         return this.copia;
     }
+
+    public int codigoPrecioLibro() {
+        return this.copia.codigoPrecioLibro();
+    }
 }

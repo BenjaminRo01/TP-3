@@ -8,6 +8,10 @@ public class CopiaLibro {
     }
 
     public Libro libro() {
-        return libro;
+        return this.libro;
+    }
+
+    public int codigoPrecioLibro() {
+        return this.libro.codigoPrecio();
     }
 }
