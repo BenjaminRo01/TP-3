@@ -16,13 +16,27 @@ public class Cliente {
         double total = 0;
         int puntosAlquilerFrecuente = 0;
         for (Alquiler alquiler : alquileres) {
-            CalculadoraAquiler calculadoraAquiler = new CalculadoraAquiler(alquiler, alquiler.copia().libro().codigoPrecio());
+            CalculadoraAquiler calculadoraAquiler = getCalculadoraAquiler(alquiler);
             total += calculadoraAquiler.calcularMonto();
             puntosAlquilerFrecuente += calculadoraAquiler.calcularPuntos();
         }
         resultado[0] = total;
         resultado[1] = puntosAlquilerFrecuente;
         return resultado;
+    }
+
+    private static CalculadoraAquiler getCalculadoraAquiler(Alquiler alquiler) {
+        int tipoLibro = alquiler.copia().libro().codigoPrecio();
+        switch (alquiler.copia().libro().codigoPrecio()) {
+            case Libro.REGULARES:
+                return new CalculadoraAlquilerRegular(alquiler, tipoLibro);
+            case Libro.NUEVO_LANZAMIENTO:
+                return new CalculadoraAlquilerNuevoLanzamiento(alquiler, tipoLibro);
+            case Libro.INFANTILES:
+                return new CalculadoraAlquilerInfantil(alquiler, tipoLibro);
+            default:
+                throw new RuntimeException("Tipo de libro desconocido.");
+        }
     }
 
     public void alquilar(Alquiler rental) {
