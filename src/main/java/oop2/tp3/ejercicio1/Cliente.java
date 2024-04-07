@@ -15,17 +15,9 @@ public class Cliente {
         Object[] resultado = new Object[2];
         double total = 0;
         int puntosAlquilerFrecuente = 0;
-        for (Alquiler alquiler : alquileres) {
-            CalculadoraAquiler calculadoraAquiler = new CalculadoraAquiler(alquiler, alquiler.copia().libro().codigoPrecio());
-            total += calculadoraAquiler.calcularMonto();
-            // sumo puntos por alquiler
-            puntosAlquilerFrecuente++;
-            // bonus por dos días de alquiler de un nuevo lanzamiento
-            if ((alquiler.copia().libro().codigoPrecio() == Libro.NUEVO_LANZAMIENTO)
-                    && alquiler.diasAlquilados() > 1) {
-                puntosAlquilerFrecuente++;
-            }
-        }
+        CalculadoraAquiler calculadoraAquiler = new CalculadoraAquiler(alquileres);
+        total = calculadoraAquiler.calcularMonto();
+        puntosAlquilerFrecuente = calculadoraAquiler.calcularPuntos();
         resultado[0] = total;
         resultado[1] = puntosAlquilerFrecuente;
         return resultado;

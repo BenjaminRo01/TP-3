@@ -1,32 +1,45 @@
 package oop2.tp3.ejercicio1;
 
-public class CalculadoraAquiler {
-    private Alquiler alquiler;
-    private int tipoLibro;
+import java.util.List;
 
-    public CalculadoraAquiler(Alquiler alquiler, int tipoLibro) {
-        this.alquiler = alquiler;
-        this.tipoLibro = tipoLibro;
+public class CalculadoraAquiler {
+    private List<Alquiler> alquileres;
+
+    public CalculadoraAquiler(List<Alquiler> alquileres) {
+        this.alquileres = alquileres;
     }
 
     public double calcularMonto() {
         double monto = 0;
-        switch (tipoLibro) {
-            case Libro.REGULARES:
-                monto += 2;
-                if (alquiler.diasAlquilados() > 2)
-                    monto += (alquiler.diasAlquilados() - 2) * 1.5;
-                break;
-            case Libro.NUEVO_LANZAMIENTO:
-                monto += alquiler.diasAlquilados() * 3;
-                break;
-            case Libro.INFANTILES:
-                monto += 1.5;
-                if (alquiler.diasAlquilados() > 3)
-                    monto += (alquiler.diasAlquilados() - 3) * 1.5;
-                break;
+        for (Alquiler alquiler : alquileres) {
+            switch (alquiler.copia().libro().codigoPrecio()) {
+                case Libro.REGULARES:
+                    monto += 2;
+                    if (alquiler.diasAlquilados() > 2)
+                        monto += (alquiler.diasAlquilados() - 2) * 1.5;
+                    break;
+                case Libro.NUEVO_LANZAMIENTO:
+                    monto += alquiler.diasAlquilados() * 3;
+                    break;
+                case Libro.INFANTILES:
+                    monto += 1.5;
+                    if (alquiler.diasAlquilados() > 3)
+                        monto += (alquiler.diasAlquilados() - 3) * 1.5;
+                    break;
+            }
         }
         return monto;
     }
 
+    public int calcularPuntos() {
+        int puntos = 0;
+        for (Alquiler alquiler : alquileres) {
+            if ((alquiler.copia().libro().codigoPrecio() == Libro.NUEVO_LANZAMIENTO)
+                    && alquiler.diasAlquilados() > 1) {
+                puntos++;
+            }
+            puntos++;
+        }
+        return puntos;
+    }
 }
