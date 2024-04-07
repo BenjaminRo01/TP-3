@@ -1,5 +1,6 @@
 package oop2.refactoring.collecting.ejemplo2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Figuras {
@@ -18,11 +19,11 @@ public class Figuras {
         }
     }
 
-//    private List<Figura> circulos() {
-//        var temp = new ArrayList<Figura>();
-//        for (Figura figura : this.figuras) {
-//            figura.soloCirculos(temp);
-//        }
-//        return temp;
-//    }
+    private List<Figura> circulos() {
+        var temp = new ArrayList<Figura>();
+        for (Figura figura : this.figuras) {
+            figura.soloCirculos(temp);
+        }
+        return temp;
+    }
 }
