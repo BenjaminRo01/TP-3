@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 public class LibreriaTest {
     @Test
-    public void testAlquilerLibroRegular(){
+    public void testAlquilerLibroRegular() {
         //Inicialización
         int diasAlquilados = 5;
-        Libro elTunel = new Libro("El Túnel", Libro.REGULARES);
+        LibroRegular elTunel = new LibroRegular("El Túnel");
         CopiaLibro elTunelCopia = new CopiaLibro(elTunel);
         Alquiler alquilerElTunel = new Alquiler(elTunelCopia, diasAlquilados);
         Cliente cliente = new Cliente("Benjamin");
@@ -21,10 +21,11 @@ public class LibreriaTest {
         Assert.assertEquals(resultado[0], 6.5); //total
         Assert.assertEquals(resultado[1], 1); //puntos por alquiler
     }
+
     @Test
-    public void testAlquilerLibroNuevoLanzamiento(){
+    public void testAlquilerLibroNuevoLanzamiento() {
         int diasAlquilados = 1;
-        Libro antesDelFin = new Libro("Antes del Fin", Libro.NUEVO_LANZAMIENTO);
+        LibroLanzamiento antesDelFin = new LibroLanzamiento("Antes del Fin");
         CopiaLibro antesDelFinCopia = new CopiaLibro(antesDelFin);
         Alquiler alquilerAntesDelFin = new Alquiler(antesDelFinCopia, diasAlquilados);
         Cliente cliente = new Cliente("Benjamin");
@@ -35,10 +36,11 @@ public class LibreriaTest {
         Assert.assertEquals(resultado[0], 3.0); //total
         Assert.assertEquals(resultado[1], 1); //puntos por alquiler
     }
+
     @Test
-    public void testAlquilerLibroInfatil(){
+    public void testAlquilerLibroInfatil() {
         int diasAlquilados = 6;
-        Libro pequeniosElefantes = new Libro("Pequeños Elefantes", Libro.INFANTILES);
+        LibroInfantil pequeniosElefantes = new LibroInfantil("Pequeños Elefantes");
         CopiaLibro pequeniosElefantesCopia = new CopiaLibro(pequeniosElefantes);
         Alquiler alquilerPequeniosElefantes = new Alquiler(pequeniosElefantesCopia, diasAlquilados);
         Cliente cliente = new Cliente("Benjamin");
@@ -49,15 +51,16 @@ public class LibreriaTest {
         Assert.assertEquals(resultado[0], 6.0); //total
         Assert.assertEquals(resultado[1], 1); //puntos por alquiler
     }
+
     @Test
-    public void testAlquilerLibros(){
-        Libro antesDelFin = new Libro("Antes del Fin", Libro.NUEVO_LANZAMIENTO);
+    public void testAlquilerLibros() {
+        LibroLanzamiento antesDelFin = new LibroLanzamiento("Antes del Fin");
         CopiaLibro antesDelFinCopia = new CopiaLibro(antesDelFin);
 
-        Libro pequeniosElefantes = new Libro("Pequeños Elefantes", Libro.INFANTILES);
+        LibroInfantil pequeniosElefantes = new LibroInfantil("Pequeños Elefantes");
         CopiaLibro pequeniosElefantesCopia = new CopiaLibro(pequeniosElefantes);
 
-        Libro elTunel = new Libro("El Túnel", Libro.REGULARES);
+        LibroRegular elTunel = new LibroRegular("El Túnel");
         CopiaLibro elTunelCopia = new CopiaLibro(elTunel);
 
         Alquiler alquilerAntesDelFin = new Alquiler(antesDelFinCopia, 3);
