@@ -1,22 +1,16 @@
 package oop2.tp3.ejercicio1;
 
-public class Libro {
-    public static final int INFANTILES = 2;
-    public static final int REGULARES = 0;
-    public static final int NUEVO_LANZAMIENTO = 1;
-    private String nombre;
-    private int codigoPrecio;
+public abstract class Libro {
+    protected static final int CONSTANTE_PUNTOS = 1;
+    protected String nombre;
 
-    public Libro(String nombre, int priceCode) {
+    public Libro(String nombre) {
         this.nombre = nombre;
-        this.codigoPrecio = priceCode;
     }
 
-    public int codigoPrecio() {
-        return this.codigoPrecio;
-    }
+    abstract double calcularMontoAlquiler(int dias);
 
-    public String nombre() {
-        return nombre;
+    public int obtenerPuntosAlquiler(int dias) {
+        return CONSTANTE_PUNTOS;
     }
 }

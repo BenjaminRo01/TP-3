@@ -16,9 +16,8 @@ public class Cliente {
         double total = 0;
         int puntosAlquilerFrecuente = 0;
         for (Alquiler alquiler : alquileres) {
-            CalculadoraAquiler calculadoraAquiler = FactoryCalculadoraAlquiler.crear(alquiler);
-            total += calculadoraAquiler.calcularMonto();
-            puntosAlquilerFrecuente += calculadoraAquiler.calcularPuntos();
+            total += alquiler.calcularMonto();
+            puntosAlquilerFrecuente += alquiler.obtenerPuntosAlquiler();
         }
         resultado[0] = total;
         resultado[1] = puntosAlquilerFrecuente;

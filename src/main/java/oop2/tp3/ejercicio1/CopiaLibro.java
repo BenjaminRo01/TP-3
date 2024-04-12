@@ -11,7 +11,4 @@ public class CopiaLibro {
         return this.libro;
     }
 
-    public int codigoPrecioLibro() {
-        return this.libro.codigoPrecio();
-    }
 }
