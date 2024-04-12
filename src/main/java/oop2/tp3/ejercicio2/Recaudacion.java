@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Recaudacion {
     private List<String[]> csvData;
-    private List<String> columns;
+    private final List<String> columns;
 
     public Recaudacion() {
         csvData = LecturaCSV.getCsvData();
-        columns = List.of("permalink", "company_name", "number_employees", "category", "city", "state", "funded_date", "raised_amount", "raised_currency", "round");
+        columns = List.of(csvData.removeFirst());
     }
 
     public List<Map<String, String>> where(Map<String, String> options)
@@ -26,15 +27,22 @@ public class Recaudacion {
     }
 
     private void filter(String key, String value) {
-        List<String[]> results = new ArrayList<String[]>();
         int index = columns.indexOf(key);
-        for (String[] data : csvData) {
-            if (data[index].equals(value)) {
-                results.add(data);
-            }
-        }
-        csvData = results;
+        csvData = csvData.stream()
+                .filter(data -> data[index].equals(value))
+                .collect(Collectors.toList());
     }
+
+//    private void filter(String key, String value) {
+//        List<String[]> results = new ArrayList<String[]>();
+//        int index = columns.indexOf(key);
+//        for (String[] data : csvData) {
+//            if (data[index].equals(value)) {
+//                results.add(data);
+//            }
+//        }
+//        csvData = results;
+//    }
 
     private void extracted(List<Map<String, String>> output) {
         for (String[] data : csvData) {

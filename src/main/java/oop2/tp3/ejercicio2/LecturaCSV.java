@@ -16,7 +16,6 @@ public class LecturaCSV {
                 csvData.add(row);
             }
             reader.close();
-            csvData.remove(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
