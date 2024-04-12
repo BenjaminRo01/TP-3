@@ -1,18 +1,19 @@
 package oop2.tp3.ejercicio3;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class ReporteDeGastosTest {
     @Test
-    public void testReporte() {
+    public void testReporte1() {
         List<Gasto> gastos = List.of(
-                new Gasto(TipoDeGasto.DESAYUNO, 23),
-                new Gasto(TipoDeGasto.CENA, 50),
-                new Gasto(TipoDeGasto.ALQUILER_AUTO, 100));
+                new GastoDesayuno(23),
+                new GastoCena(50),
+                new GastoAlquilerAuto(100));
 
         var reporte = new ReporteDeGastos();
 
@@ -23,6 +24,25 @@ public class ReporteDeGastosTest {
                 "Gastos de comida: " + 73 + "\n" +
                 "Total de gastos: " + 173;
 
-        Assert.assertEquals(reporte.imprimir(gastos), reporteEsperado);
+        assertEquals(reporte.imprimir(gastos), reporteEsperado);
+    }
+
+    @Test
+    public void testReporte2() {
+        List<Gasto> gastos = List.of(
+                new GastoDesayuno(1200),
+                new GastoCena(5500),
+                new GastoAlquilerAuto(1000));
+
+        var reporte = new ReporteDeGastos();
+
+        String reporteEsperado = "Expenses " + LocalDate.now() + "\n" +
+                "Desayuno" + "\t" + 1200 + "\t" + "X" + "\n" +
+                "Cena" + "\t" + 5500 + "\t" + "X" + "\n" +
+                "Alquiler de Autos" + "\t" + 1000 + "\t" + " " + "\n" +
+                "Gastos de comida: " + 6700 + "\n" +
+                "Total de gastos: " + 7700;
+
+        assertEquals(reporte.imprimir(gastos), reporteEsperado);
     }
 }
