@@ -10,14 +10,22 @@ enum TipoDeGasto {
 class Gasto {
     TipoDeGasto tipoGasto;
     int monto;
+
+    public Gasto(TipoDeGasto tipoGasto, int monto) {
+        this.tipoGasto = tipoGasto;
+        this.monto = monto;
+    }
 }
 
 public class ReporteDeGastos {
-    public void imprimir(List<Gasto> gastos) {
+    public ReporteDeGastos() {
+    }
+
+    public String imprimir(List<Gasto> gastos) {
         int total = 0;
         int gastosDeComida = 0;
-
-        System.out.println("Expenses " + LocalDate.now());
+        StringBuilder reporte = new StringBuilder();
+        reporte = new StringBuilder("Expenses " + LocalDate.now() + "\n");
 
         for (Gasto gasto : gastos) {
             if (gasto.tipoGasto == TipoDeGasto.CENA || gasto.tipoGasto == TipoDeGasto.DESAYUNO) {
@@ -40,12 +48,14 @@ public class ReporteDeGastos {
             String marcaExcesoComidas = gasto.tipoGasto == TipoDeGasto.CENA && gasto.monto > 5000
                     || gasto.tipoGasto == TipoDeGasto.DESAYUNO && gasto.monto > 1000 ? "X" : " ";
 
-            System.out.println(nombreGasto + "\t" + gasto.monto + "\t" + marcaExcesoComidas);
+            reporte.append(nombreGasto).append("\t").append(gasto.monto).append("\t").append(marcaExcesoComidas).append("\n");
 
             total += gasto.monto;
         }
 
-        System.out.println("Gastos de comida: " + gastosDeComida);
-        System.out.println("Total de gastos: " + total);
+        reporte.append("Gastos de comida: ").append(gastosDeComida).append("\n");
+        reporte.append("Total de gastos: ").append(total);
+
+        return reporte.toString();
     }
 }

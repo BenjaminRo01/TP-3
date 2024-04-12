@@ -15,7 +15,6 @@ public class LecturaCSV {
             while ((row = reader.readNext()) != null) {
                 csvData.add(row);
             }
-            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
