@@ -13,15 +13,13 @@ public class Main {
         var repo = new PersonaRepository(jdbi);
         var personas = repo.buscarPorNombre("Vla");
 
-        if (personas != null) {
+        if (!personas.isEmpty()) {
             for (Persona persona : personas) {
                 System.out.println(persona.nombre() + " " + persona.apellido());
             }
         }
 
         var persona = repo.buscarId(1L);
-        if (persona != null) {
-            System.out.println(persona.nombre() + " " + persona.apellido());
-        }
+        persona.ifPresent(value -> System.out.println(value.nombre() + " " + value.apellido()));
     }
 }
