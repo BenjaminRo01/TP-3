@@ -10,13 +10,13 @@ public class GastoDesayuno implements Gasto {
     }
 
     @Override
-    public int sumarMontoComidas(int total) {
-        return monto + total;
+    public int montoComidas() {
+        return monto;
     }
 
     @Override
-    public int sumarMontoTotal(int total) {
-        return monto + total;
+    public int monto() {
+        return monto;
     }
 
     @Override

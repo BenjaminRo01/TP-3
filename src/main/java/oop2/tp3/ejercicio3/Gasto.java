@@ -1,9 +1,9 @@
 package oop2.tp3.ejercicio3;
 
 interface Gasto {
-    int sumarMontoComidas(int total);
+    int montoComidas();
 
-    int sumarMontoTotal(int total);
+    int monto();
 
     String obtenerNombre();
 

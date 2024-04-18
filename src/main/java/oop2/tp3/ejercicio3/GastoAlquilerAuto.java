@@ -10,13 +10,13 @@ public class GastoAlquilerAuto implements Gasto {
     }
 
     @Override
-    public int sumarMontoComidas(int total) {
-        return total;
+    public int montoComidas() {
+        return 0;
     }
 
     @Override
-    public int sumarMontoTotal(int total) {
-        return monto + total;
+    public int monto() {
+        return monto;
     }
 
     @Override

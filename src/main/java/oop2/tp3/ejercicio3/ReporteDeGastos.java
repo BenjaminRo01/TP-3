@@ -8,9 +8,9 @@ public class ReporteDeGastos {
         int gastosDeComida = 0;
         StringBuilder reporte = new StringBuilder(FormatoReporte.formatoCabecera());
         for (Gasto gasto : gastos) {
-            gastosDeComida = gasto.sumarMontoComidas(gastosDeComida);
+            gastosDeComida += gasto.montoComidas();
             reporte.append(FormatoReporte.formatoLineaGasto(gasto));
-            total = gasto.sumarMontoTotal(total);
+            total += gasto.monto();
         }
 
         reporte.append(FormatoReporte.formatoGastosDeComida(gastosDeComida));
