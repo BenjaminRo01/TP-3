@@ -5,52 +5,60 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 public class Recaudacion {
     private List<String[]> csvData;
-    private final List<String> columns;
 
-    public Recaudacion() {
-        csvData = LecturaCSV.getCsvData();
-        columns = List.of(csvData.removeFirst());
+    public Recaudacion(LecturaCSV lecturaCSV) {
+        this.csvData = lecturaCSV.getCsvData();
     }
 
     public List<Map<String, String>> where(Map<String, String> options)
             throws IOException {
-        List<Map<String, String>> output = new ArrayList<Map<String, String>>();
-        for (Map.Entry<String, String> entry : options.entrySet()) {
-            this.filter(entry.getKey(), entry.getValue());
+
+        if (options.containsKey("company_name")) {
+            csvData = filter((fila) -> fila[1].equals(options.get("company_name")));
         }
-        this.extracted(output);
-        return output;
+        if (options.containsKey("city")) {
+            csvData = filter((fila) -> fila[4].equals(options.get("city")));
+        }
+        if (options.containsKey("state")) {
+            csvData = filter((fila) -> fila[5].equals(options.get("state")));
+        }
+        if (options.containsKey("round")) {
+            csvData = filter((fila) -> fila[9].equals(options.get("round")));
+        }
+
+        return this.extracted();
     }
 
-    private void filter(String key, String value) {
-        int index = columns.indexOf(key);
-        csvData = csvData.stream()
-                .filter(data -> data[index].equals(value))
-                .collect(Collectors.toList());
-    }
-
-//    private void filter(String key, String value) {
-//        List<String[]> results = new ArrayList<String[]>();
-//        int index = columns.indexOf(key);
-//        for (String[] data : csvData) {
-//            if (data[index].equals(value)) {
-//                results.add(data);
-//            }
-//        }
-//        csvData = results;
-//    }
-
-    private void extracted(List<Map<String, String>> output) {
-        for (String[] data : csvData) {
-            Map<String, String> mapped = new HashMap<>();
-            for (int i = 0; i < columns.size(); i++) {
-                mapped.put(columns.get(i), data[i]);
+    private List<String[]> filter(Predicate<String[]> predicate) {
+        List<String[]> results = new ArrayList<String[]>();
+        for (String[] fila : csvData) {
+            if (predicate.test(fila)) {
+                results.add(fila);
             }
+        }
+        return results;
+    }
+
+    private List<Map<String, String>> extracted() {
+        List<Map<String, String>> output = new ArrayList<Map<String, String>>();
+        for (String[] fila : csvData) {
+            Map<String, String> mapped = new HashMap<String, String>();
+            mapped.put("permalink", fila[0]);
+            mapped.put("company_name", fila[1]);
+            mapped.put("number_employees", fila[2]);
+            mapped.put("category", fila[3]);
+            mapped.put("city", fila[4]);
+            mapped.put("state", fila[5]);
+            mapped.put("funded_date", fila[6]);
+            mapped.put("raised_amount", fila[7]);
+            mapped.put("raised_currency", fila[8]);
+            mapped.put("round", fila[9]);
             output.add(mapped);
         }
+        return output;
     }
 }

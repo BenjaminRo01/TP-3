@@ -8,13 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LecturaCSV {
-    public static List<String[]> getCsvData() {
+    private final String path;
+
+    public LecturaCSV(String path) {
+        this.path = path;
+    }
+
+    public List<String[]> getCsvData() {
         List<String[]> csvData = new ArrayList<String[]>();
-        try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/data.csv"))) {
+        try (CSVReader reader = new CSVReader(new FileReader(this.path))) {
             String[] row = null;
             while ((row = reader.readNext()) != null) {
                 csvData.add(row);
             }
+            csvData.removeFirst();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
