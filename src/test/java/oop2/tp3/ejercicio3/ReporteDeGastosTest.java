@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ReporteDeGastosTest {
     @Test
-    public void testReporte1() {
+    public void testReporteSinExcesoDeGastos() {
         List<Gasto> gastos = List.of(
                 new GastoDesayuno(23),
                 new GastoCena(50),
@@ -28,7 +28,7 @@ public class ReporteDeGastosTest {
     }
 
     @Test
-    public void testReporte2() {
+    public void testReporteConExcesoDeGastos() {
         List<Gasto> gastos = List.of(
                 new GastoDesayuno(1200),
                 new GastoCena(5500),

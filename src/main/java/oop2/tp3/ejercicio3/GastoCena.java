@@ -1,6 +1,7 @@
 package oop2.tp3.ejercicio3;
 
 public class GastoCena implements Gasto {
+    public static final int MONTO_EXCESO = 5000;
     private String nombre;
     private int monto;
 
@@ -31,6 +32,6 @@ public class GastoCena implements Gasto {
 
     @Override
     public boolean excesoDeGastoComida() {
-        return monto > 5000;
+        return monto > MONTO_EXCESO;
     }
 }
