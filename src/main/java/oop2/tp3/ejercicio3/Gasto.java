@@ -9,5 +9,5 @@ interface Gasto {
 
     int obtenerMonto();
 
-    String excesoDeGastoComida();
+    boolean excesoDeGastoComida();
 }

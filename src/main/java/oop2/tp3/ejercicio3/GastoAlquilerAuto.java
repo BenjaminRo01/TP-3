@@ -30,7 +30,7 @@ public class GastoAlquilerAuto implements Gasto {
     }
 
     @Override
-    public String excesoDeGastoComida() {
-        return " ";
+    public boolean excesoDeGastoComida() {
+        return false;
     }
 }

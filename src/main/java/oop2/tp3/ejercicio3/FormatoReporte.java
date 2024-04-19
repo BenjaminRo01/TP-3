@@ -8,7 +8,8 @@ public class FormatoReporte {
     }
 
     public static String formatoLineaGasto(Gasto gasto) {
-        return gasto.obtenerNombre() + "\t" + gasto.obtenerMonto() + "\t" + gasto.excesoDeGastoComida() + "\n";
+        String strExcesoDeGastoComida = gasto.excesoDeGastoComida() ? "X" : " ";
+        return gasto.obtenerNombre() + "\t" + gasto.obtenerMonto() + "\t" + strExcesoDeGastoComida + "\n";
     }
 
     public static String formatoGastosDeComida(int total) {

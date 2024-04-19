@@ -30,7 +30,7 @@ public class GastoCena implements Gasto {
     }
 
     @Override
-    public String excesoDeGastoComida() {
-        return monto > 5000 ? "X" : " ";
+    public boolean excesoDeGastoComida() {
+        return monto > 5000;
     }
 }
